@@ -1,0 +1,59 @@
+---------------------------------------------
+OSHONSOFT Z80 ASSEMBLER LISTING
+Line   Addr Opcode      Label   Instruction
+---------------------------------------------
+0001   0000 26 10       ETIQ1:	LD H,10H
+0002   0002 2E 00       	LD L,0H
+0003   0004 F9          	LD SP,HL
+0004   0005 06 09       ETIQ7:	LD B,9H
+0005   0007 0E 00       	LD C,0H
+0006   0009 1E 00       	LD E,0H
+0007   000B CD 39 00    ETIQ2:	CALL FUN1
+0008   000E 3E 99       	LD A,99H
+0009   0010 A9          	XOR C
+0010   0011 28 0B       	JR Z,ETIQ3
+0011   0013 3E 07       	LD A,07H
+0012   0015 81          	ADD A,C
+0013   0016 4F          	LD C,A
+0014   0017 3E 10       	LD A,10H
+0015   0019 80          	ADD A,B
+0016   001A 47          	LD B,A
+0017   001B 2C          	INC L
+0018   001C 30 ED       	JR NC,ETIQ2
+0019   001E 06 90       ETIQ3:	LD B,90H
+0020   0020 CD 45 00    ETIQ4:	CALL FUN2
+0021   0023 79          	LD A,C
+0022   0024 D6 07       	SUB 07H
+0023   0026 4F          	LD C,A
+0024   0027 78          	LD A,B
+0025   0028 D6 10       	SUB 10H
+0026   002A 47          	LD B,A
+0027   002B 2C          	INC L
+0028   002C 16 F0       	LD D,F0H
+0029   002E AA          	XOR D
+0030   002F 20 EF       	JR NZ,ETIQ4
+0031   0031 1C          	INC E
+0032   0032 FE 10       	CP 10H
+0033   0034 20 CF       	JR NZ,ETIQ7
+0034   0036 C3 00 00    	JP ETIQ1
+0035   0039 78          FUN1:	LD A,B
+0036   003A 71          	LD (HL),C
+0037   003B 0C          	INC C
+0038   003C 2C          	INC L
+0039   003D 20 01       	JR NZ,ETIQ6
+0040   003F 24          	INC H
+0041   0040 A9          ETIQ6:	XOR C
+0042   0041 20 F6       	JR NZ,FUN1
+0043   0043 71          	LD (HL),C
+0044   0044 C9          	RET
+0045   0045 78          FUN2:	LD A,B
+0046   0046 71          	LD (HL),C
+0047   0047 0D          	DEC C
+0048   0048 2C          	INC L
+0049   0049 20 01       	JR NZ,ETIQ5
+0050   004B 24          	INC H
+0051   004C A9          ETIQ5:	XOR C
+0052   004D 20 F6       	JR NZ,FUN2
+0053   004F 71          	LD (HL),C
+0054   0050 C9          	RET
+Number of errors = 0

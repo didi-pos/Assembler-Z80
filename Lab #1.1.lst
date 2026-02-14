@@ -1,0 +1,38 @@
+---------------------------------------------
+OSHONSOFT Z80 ASSEMBLER LISTING
+Line   Addr Opcode      Label   Instruction
+---------------------------------------------
+0001   0000 26 10       ETIQ1:	LD H,10H
+0002   0002 2E 00       	LD L,0H
+0003   0004 F9          	LD SP,HL
+0004   0005 DB 25       	IN A,(25H)
+0005   0007 5F          	LD E,A
+0006   0008 16 00       	LD D,0H
+0007   000A 43          ETIQ3:	LD B,E
+0008   000B CD 1B 00    	CALL FUN1
+0009   000E 0D          	DEC C
+0010   000F CD 28 00    	CALL FUN2
+0011   0012 14          	INC D
+0012   0013 7A          	LD A,D
+0013   0014 FE 0A       	CP 0AH
+0014   0016 20 F2       	JR NZ,ETIQ3
+0015   0018 C3 00 00    	JP ETIQ1
+0016   001B 0E 00       FUN1:	LD C,0H
+0017   001D 71          ETIQ2:	LD (HL),C
+0018   001E 78          	LD A,B
+0019   001F 0C          	INC C
+0020   0020 2C          	INC L
+0021   0021 20 01       	JR NZ,ETIQ5
+0022   0023 24          	INC H
+0023   0024 A9          ETIQ5:	XOR C
+0024   0025 20 F6       	JR NZ,ETIQ2
+0025   0027 C9          	RET
+0026   0028 3E 00       FUN2:	LD A,0H
+0027   002A 70          	LD (HL),B
+0028   002B 05          	DEC B
+0029   002C 2C          	INC L
+0030   002D A8          	XOR B
+0031   002E 20 F8       	JR NZ,FUN2
+0032   0030 70          	LD (HL),B
+0033   0031 C9          	RET
+Number of errors = 0

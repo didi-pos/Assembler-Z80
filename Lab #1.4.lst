@@ -1,0 +1,75 @@
+---------------------------------------------
+OSHONSOFT Z80 ASSEMBLER LISTING
+Line   Addr Opcode      Label   Instruction
+---------------------------------------------
+0001   0000 26 10       ETIQ1:	LD H,10H
+0002   0002 2E 00       	LD L,0H
+0003   0004 F9          	LD SP,HL
+0004   0005 3E 00       	LD A,0H
+0005   0007 32 00 05    	LD (500H),A
+0006   000A DB 25       	IN A,(25H)
+0007   000C 32 01 05    	LD (501H),A
+0008   000F 3A 01 05    ETIQ8:	LD A,(501H)
+0009   0012 57          	LD D,A
+0010   0013 06 09       	LD B,9H
+0011   0015 0E 00       	LD C,0H
+0012   0017 1E 00       	LD E,0H
+0013   0019 CD 50 00    ETIQ2:	CALL FUN1
+0014   001C 7A          	LD A,D
+0015   001D A9          	XOR C
+0016   001E 28 0D       	JR Z,ETIQ3
+0017   0020 1E 00       	LD E,0H
+0018   0022 3E 07       	LD A,07H
+0019   0024 81          	ADD A,C
+0020   0025 4F          	LD C,A
+0021   0026 3E 10       	LD A,10H
+0022   0028 80          	ADD A,B
+0023   0029 47          	LD B,A
+0024   002A 2C          	INC L
+0025   002B 30 EC       	JR NC,ETIQ2
+0026   002D 7A          ETIQ3:	LD A,D
+0027   002E 93          	SUB E
+0028   002F 47          	LD B,A
+0029   0030 CD 61 00    ETIQ4:	CALL FUN2
+0030   0033 79          	LD A,C
+0031   0034 D6 07       	SUB 07H
+0032   0036 4F          	LD C,A
+0033   0037 78          	LD A,B
+0034   0038 D6 10       	SUB 10H
+0035   003A 47          	LD B,A
+0036   003B 2C          	INC L
+0037   003C 16 F0       	LD D,F0H
+0038   003E AA          	XOR D
+0039   003F 20 EF       	JR NZ,ETIQ4
+0040   0041 3A 00 05    	LD A,(500H)
+0041   0044 3C          	INC A
+0042   0045 32 00 05    	LD (500H),A
+0043   0048 FE 10       	CP 10H
+0044   004A 20 C3       	JR NZ,ETIQ8
+0045   004C 00          XXX:	NOP
+0046   004D C3 4C 00    	JP XXX
+0047   0050 71          FUN1:	LD (HL),C
+0048   0051 7A          	LD A,D
+0049   0052 A9          	XOR C
+0050   0053 28 0B       	JR Z,ETIQ5
+0051   0055 1C          	INC E
+0052   0056 78          	LD A,B
+0053   0057 0C          	INC C
+0054   0058 2C          	INC L
+0055   0059 20 01       	JR NZ,ETIQ7
+0056   005B 24          	INC H
+0057   005C A9          ETIQ7:	XOR C
+0058   005D 20 F1       	JR NZ,FUN1
+0059   005F 71          	LD (HL),C
+0060   0060 C9          ETIQ5:	RET
+0061   0061 78          FUN2:	LD A,B
+0062   0062 71          	LD (HL),C
+0063   0063 0D          	DEC C
+0064   0064 2C          	INC L
+0065   0065 20 01       	JR NZ,ETIQ6
+0066   0067 24          	INC H
+0067   0068 A9          ETIQ6:	XOR C
+0068   0069 20 F6       	JR NZ,FUN2
+0069   006B 71          	LD (HL),C
+0070   006C C9          	RET
+Number of errors = 0
